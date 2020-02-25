@@ -6,11 +6,23 @@ using System.Threading.Tasks;
 
 namespace ShutovDenis
 { 
-    namespace Lesson01
+    namespace CSharpBasev3
     {
         class Program
         {
             static void Main()
+            {
+                WindowPreset();
+
+                //ВНИМАНИЕ!!!   Ниже необходимо менять по очереди одну цифру Х в методе DZ2_X(); до 5
+                
+                DZ2_5();
+
+                Console.ReadKey();
+            }
+
+
+            static void WindowPreset()
             {
                 Console.Title = "Шутов Денис Москва 37";
                 Console.SetWindowSize(50, 10);
@@ -18,59 +30,143 @@ namespace ShutovDenis
                 Console.ForegroundColor = ConsoleColor.Black;
                 Console.BackgroundColor = ConsoleColor.White;
                 Console.Clear();
-                //ВНИМАНИЕ!!!   Ниже необходимо менять по очереди одну цифру Х в методе DZ1_X();
-
-                DZ1_1();
-
-                Console.ReadKey();
             }
 
-            static void DZ1_1()
+            static void DZ2_1()
+                {
+                Console.WriteLine("Передаем в сравнение (0; -1; 1) (0, 5, 6) и (-3, -4, -7)");
+                Console.WriteLine("Минимум здесь (0; -1; 1) " + MinOfThreeDouble(0, -1, 1));
+                Console.WriteLine("Минимум здесь (0, 5, 6) " + MinOfThreeDouble(0, 5, 6));
+                Console.WriteLine("Минимум здесь (-3, -4, -7) " + MinOfThreeDouble(-3, -4, -7));
+                }
+           
+            static double MinOfThreeDouble(double x, double y, double z)
+            {
+            /*
+                 *  1. Написать метод, возвращающий минимальное из трех чисел.
+            */
+               
+                    double min = x;
+
+                    if (x > y)
+                    {
+                        min = y;
+                        min = (y > z) ? z : y;
+                    }
+
+                    else
+                    { 
+                        min = (x > z) ? z : x;
+                    }
+
+                    return min;
+              
+
+            }
+            static void DZ2_2()
+            {
+                /* 
+                    *2. Написать метод подсчета количества цифр числа.
+                */
+                Console.WriteLine("Введите целое число любой длинны: ");
+                string input = Console.ReadLine();
+
+                Console.WriteLine($"В этом числе {CountDigits(input)} цифр.");
+            }
+            static int CountDigits(string argument)
+            {
+                int count = 0;
+                for (int i = 0; i < argument.Length; i++)
+                    count++;
+
+                return count;
+            }
+            static void DZ2_3()
             {
                 /*
-                 *1. Написать программу «Анкета». Последовательно задаются вопросы (имя, фамилия, возраст, рост, вес). В результате вся информация выводится в одну строчку.
-                    а) используя склеивание;
-                    б) используя форматированный вывод;
-                    в) *используя вывод со знаком $.
-                 */
+                   *  3. С клавиатуры вводятся числа, пока не будет введен 0. Подсчитать сумму всех нечетных положительных чисел.
+               */
+                Console.WriteLine("Вводите целые числа, для остановки введите 0 ");
+                string KeyEnter;
+                int summator = 0;
+                do
+                {
+                    KeyEnter = Console.ReadLine();
 
-                string name;
-                string familyName;
-                int age;
-                int height;
-                int wage;
+                    if (IsEven(Int32.Parse(KeyEnter)) == false & IsPositive(Int32.Parse(KeyEnter)) == true)
+                        summator += int.Parse(KeyEnter);
+
+                }
+                while (KeyEnter != Convert.ToString('0'));
+                Console.WriteLine("Сумма положительных нечетных чисел равна =" + summator);
+            }
+
+            static bool IsEven(int number)
+            {
+                bool x;
+               return x = (number % 2 == 0) ? true : false;
+            }
+            static bool IsPositive(int number)
+            {
+                bool x;
+                return x = (number > 0) ? true : false;
+            }
 
 
-                Console.WriteLine("Добро поджалуовать в программу Анкета");
+            static void DZ2_4()
+            {
+                /*
+                     *  4. Реализовать метод проверки логина и пароля. На вход подается логин и пароль. На выходе истина, если прошел авторизацию, и ложь, если не прошел
+                         (Логин: root, Password: GeekBrains). Используя метод проверки логина и пароля, написать программу: пользователь вводит логин и пароль, программа пропускает его дальше или не пропускает.
+                         С помощью цикла do while ограничить ввод пароля тремя попытками.
+                */
+                string StoredLogin = "root";
+                string StoredPassword = "GeekBrains";
+                bool trusted = false;
+                string EnteredLogin;
 
-                Console.WriteLine("Введите свое имя:");
-                name = Console.ReadLine();
-                Console.WriteLine("Введите свою фамилию:");
-                familyName = Console.ReadLine();
-                Console.WriteLine("Введите свой возраст:");
-                age = int.Parse(Console.ReadLine());
-                Console.WriteLine("Введите свой рост в см:");
-                height = int.Parse(Console.ReadLine());
-                Console.WriteLine("Введите свой вес До кг:");
+                do
+                {
+                    Console.WriteLine("Введите логин: ");
+                    EnteredLogin = Console.ReadLine();
+                    if (EnteredLogin.ToLower() == StoredLogin)
+                    {
+                        for (int i = 1; i <= 3; i++)
+                        {
+                            Console.WriteLine($"Пльзователь {EnteredLogin.ToLower()} введите пароль: ");
+                            string EnteredPassword = Console.ReadLine();
+                            if (EnteredPassword != StoredPassword)
+                            {
+                                Console.WriteLine($"Вы ввели не верный пароль, у Вас осталось {3 - i} попыток!");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Верно!");
+                                trusted = true;
+                                break;
+                            }
+                        }
+                    }
+                        //trusted = (EnteredPassword == StoredPassword) ? true : false;
 
-                wage = int.Parse(Console.ReadLine());
+                    else
+                    {
+                        Console.WriteLine("Пользователь не обнаружен в системе.");
+                    }
+                }
+                while (trusted != true);
 
-                string outText1 = "Параметры Вашей записи А: " + name + " " + familyName + " " + age + " " + height + " " + wage;
+                    Console.WriteLine($"Пользователь {EnteredLogin.ToLower()} Вы вошли!");
 
-                string outText2 = string.Format("Вы {0} {1} ваш возвраст {2}, рост {3} и вес {4}!", name, familyName, age, height, wage);
 
-                string outText3 = $"Вы {name} {familyName} ваш возвраст {age}, рост {height} и вес {wage}!";
-
-                Console.WriteLine(outText1);
-                Console.WriteLine(outText2);
-                Console.WriteLine(outText3);
 
             }
 
-            static void DZ1_2()
+            static void DZ2_5()
             {
                 /*
-                * Ввести вес и рост человека. Рассчитать и вывести индекс массы тела (ИМТ) по формуле I=m/(h*h); где m — масса тела в килограммах, h — рост в метрах
+                     *  5. а) Написать программу, которая запрашивает массу и рост человека, вычисляет его индекс массы и сообщает, нужно ли человеку похудеть, набрать вес или все в норме;
+                            б) *Рассчитать, на сколько кг похудеть или сколько кг набрать для нормализации веса.
                 */
                 Console.WriteLine("Добро поджалуовать в программу Рост вес ИМТ");
 
@@ -79,71 +175,54 @@ namespace ShutovDenis
                 int height = int.Parse(Console.ReadLine());
                 Console.WriteLine("Введите свой вес До кг:");
                 int wage = int.Parse(Console.ReadLine());
-
+                string resultat;
                 double indIMT = wage * 10000 / (height * height);
                 Console.WriteLine("Ваш ИМТ (индекс массы тела) равен: " + indIMT);
 
-            }
-            static void DZ1_3()
-            {
-                /*
-                * а) Написать программу, которая подсчитывает расстояние между точками с координатами x1, y1 и x2,y2 по формуле r=Math.Sqrt(Math.Pow(x2-x1,2)+Math.Pow(y2-y1,2). Вывести результат, используя спецификатор формата .2f (с двумя знаками после запятой);
-                  б) *Выполните предыдущее задание, оформив вычисления расстояния между точками в виде метода;
-                */
-
-
-
-                Console.WriteLine("Добро поджаловать в программу рассчета расстояния между двумя точками.");
-
-                Console.WriteLine($"Расстояние между точками (5, 6)   и   (15, 26) равно {Rasstoyanie(5, 6, 15, 26)} единиц.");
-
-
-                double Rasstoyanie(int x1, int y1, int x2, int y2)
+                if (indIMT > 25) 
                 {
-
-                    double r = Math.Sqrt(Math.Pow(x2 - x1, 2) + Math.Pow(y2 - y1, 2));
-                    return r;
-
+                    resultat = "У Вас имеется лишний вес!";
+                } 
+                else if (indIMT == 25)
+                {
+                    resultat = "Вы в идеальной форме!";
                 }
-            }
+                else
+                {
+                    resultat = "Вам возможно не хватает пары килограммов!";
+                }
 
-            static void DZ1_4()
-            {
-                /*
-                * Написать программу обмена значениями двух переменных.
-                а) с использованием третьей переменной;
-                б) *без использования третьей переменной.
-                */
 
-                int a = 5;
-                int b = 8;
-
-                string outPrint = $"Сейчас а = {a}, и b = {b}";
-                Console.WriteLine(outPrint);
-                Console.WriteLine("Меняем переменные местами через вновь созданную третью переменную");
-                int c = b;
-                b = a;
-                a = c;
-
-                outPrint = $"Теперь а = {a}, и b = {b}";
-
-                Console.WriteLine(outPrint);
-
-                Console.WriteLine("А теперь меняем переменные местами обратно без создания новых переменных");
-
-                a += b;
-                b = a - b;
-                a -= b;
-
-                outPrint = $"И мы опять равны первоначальным значениям. а = {a}, и b = {b}";
-                Console.WriteLine(outPrint);
+                Console.WriteLine(resultat);
+               
+                
+                
 
             }
 
 
 
 
+
+
+
+
+
+
+            /*        
+            Сначала первые 5 потом если останется время после уровня 2 доделаешь бонусы.
+
+            6. *Написать программу подсчета количества «Хороших» чисел в диапазоне от 1 до 1 000 000 000. Хорошим называется число, которое делится на сумму своих цифр. Реализовать подсчет времени выполнения программы, используя структуру DateTime.
+            7. a) Разработать рекурсивный метод, который выводит на экран числа от a до b (a<b);
+
+            б) *Разработать рекурсивный метод, который считает сумму чисел от a до b.
+            Достаточно решить 4 задачи. Разбивайте программы на подпрограммы. Переписывайте в начало программы условие и свою фамилию. Все программы делайте в одном решении.
+            */
         }
-  
+
     }
 }
+ 
+ 
+ 
+ 

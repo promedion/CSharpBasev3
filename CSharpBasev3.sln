@@ -5,6 +5,11 @@ VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpBasev3", "CSharpBasev3\CSharpBasev3.csproj", "{C143F36D-7A62-4101-8AE8-E5E5D1334CE6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3252A1D4-6C2D-4182-BC78-26A7DC2FF2B6}"
+	ProjectSection(SolutionItems) = preProject
+		Homeworks_Done.cs = Homeworks_Done.cs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
