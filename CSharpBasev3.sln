@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpBasev3", "CSharpBasev
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3252A1D4-6C2D-4182-BC78-26A7DC2FF2B6}"
 	ProjectSection(SolutionItems) = preProject
-		Homeworks_Done.cs = Homeworks_Done.cs
+		CSharpBasev3\Homeworks_Done.cs = CSharpBasev3\Homeworks_Done.cs
 	EndProjectSection
 EndProject
 Global
